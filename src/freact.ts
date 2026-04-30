@@ -36,6 +36,7 @@ function useState<T>(initialValue: T): [T, (newValue: T) => void] {
     function setter(newValue: T): void {
         hooks[currentHookTarget] = newValue;
         rerender();
+        console.log(`Updated state ${currentHookTarget}: ${newValue}`)
     }
 
     return [value, setter];
@@ -48,7 +49,6 @@ MyApp = () => {
 
     (window as any).increase = () => {
         setCounter(counter + 1);
-        console.log(`Updated counter: ${counter}`)
     }
 
     return (`
